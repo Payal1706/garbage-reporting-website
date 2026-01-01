@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Garbage Reporting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+    <header>
+        <h1>Garbage Reporting System</h1>
+        <p>Clean City | Smart City</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+       
+        <a href="#">Status</a>
+        <a href="#">Admin</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <h2>Report Garbage Easily</h2>
+        <p>Help us keep your city clean and green.</p>
+        <a href="{{ url_for('report') }}">
+    <button>Report Now</button>
+</a>
+
+    </section>
+
+    <footer>
+        <p>© 2025 Garbage Reporting System</p>
+    </footer>
+
+</body>
+</html>
