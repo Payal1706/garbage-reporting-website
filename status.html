@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Check Complaint Status</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:url("/static/g.png") no-repeat center center fixed;
+    background-size:cover;
+}
+
+.overlay{
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    padding:40px;
+}
+
+/* BOX */
+.status-box{
+    background:white;
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+/* TITLE */
+.status-box h2{
+    text-align:center;
+    color:#16a34a;
+    margin-bottom:20px;
+}
+
+/* FORM */
+.form-group{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+input{
+    flex:1;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:15px;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:14px;
+    background:#16a34a;
+    color:white;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#15803d;
+}
+
+/* MESSAGE */
+.status-msg{
+    margin-bottom:15px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+}
+
+th{
+    background:#16a34a;
+    color:white;
+    padding:10px;
+}
+
+td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+img{
+    height:80px;
+    border-radius:10px;
+}
+</style>
+
+<script>
+function checkForm(){
+    let name = document.getElementById("name").value.trim();
+    let location = document.getElementById("location").value.trim();
+    let msg = document.getElementById("msg");
+
+    msg.innerHTML = "";
+
+    if(name.length < 3){
+        msg.innerHTML = "⚠ Please enter valid name";
+        msg.style.color="red";
+        return false;
+    }
+
+    if(location.length < 3){
+        msg.innerHTML = "⚠ Please enter correct location";
+        msg.style.color="red";
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="status-box">
+
+<h2>Check Complaint Status</h2>
+
+<div id="msg" class="status-msg"></div>
+
+<form method="POST" action="/status" onsubmit="return checkForm()">
+    <div class="form-group">
+        <input type="text" name="name" id="name" placeholder="Enter your name" value="{{ name }}">
+        <input type="text" name="location" id="location" placeholder="Enter your location" value="{{ location }}">
+    </div>
+    <button type="submit">Check Status</button>
+</form>
+
+{% if complaints %}
+<table>
+<tr>
+    <th>ID</th>
+    <th>Garbage Type</th>
+    <th>Description</th>
+    <th>Photo</th>
+    <th>Status</th>
+</tr>
+
+{% for c in complaints %}
+<tr>
+    <td>{{ c.id }}</td>
+    <td>{{ c.garbage_type }}</td>
+    <td>{{ c.description }}</td>
+    <td>
+        {% if c.photo %}
+            <img src="{{ url_for('static', filename='uploads/' + c.photo) }}">
+        {% else %}
+            No Image
+        {% endif %}
+    </td>
+    <td><b>{{ c.status }}</b></td>
+</tr>
+{% endfor %}
+</table>
+
+{% elif searched %}
+<p style="text-align:center;color:red;margin-top:20px;">
+❌ No complaint found for this Name & Location
+</p>
+{% endif %}
+
+</div>
+</div>
+
+</body>
+</html>

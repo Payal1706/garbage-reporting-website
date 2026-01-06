@@ -1,81 +1,105 @@
 body {
+    font-family: Arial;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background: #f4f6f8;
 }
 
-header {
-    background-color: #2e8b57;
+.header {
+    background: #1e293b;
     color: white;
-    text-align: center;
     padding: 20px;
-}
-
-nav {
-    background-color: #333;
     text-align: center;
-    padding: 10px;
 }
 
-nav a {
+.navbar {
+    background: #0f172a;
+    padding: 12px;
+    text-align: center;
+}
+
+.navbar a {
     color: white;
-    margin: 15px;
+    margin: 0 20px;
     text-decoration: none;
     font-weight: bold;
 }
 
-nav a:hover {
-    color: yellow;
-}
-
 .hero {
     text-align: center;
-    padding: 50px;
-    background-color: white;
+    padding: 70px;
+    background: linear-gradient(to right, #22c55e, #16a34a);
+    color: white;
 }
 
-.hero button {
-    padding: 10px 20px;
-    background-color: green;
-    color: white;
+.btn {
+    padding: 12px 25px;
     border: none;
-    font-size: 16px;
+    background: white;
+    color: #16a34a;
+    font-weight: bold;
+    border-radius: 25px;
     cursor: pointer;
+}
+
+.info {
+    padding: 40px;
+    text-align: center;
+}
+
+.light {
+    background: white;
+}
+
+.form-box {
+    width: 350px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.form-box input,
+.form-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.center {
+    text-align: center;
+    margin-top: 30px;
 }
 
 footer {
-    background-color: #222;
+    background: #0f172a;
     color: white;
     text-align: center;
     padding: 10px;
 }
+/* GLOBAL BACKGROUND (Home + Report) */
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    min-height: 100vh;
 
-.form-section {
-    background-color: white;
-    width: 50%;
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: 8px;
+    background: url("/static/g.png") no-repeat center center fixed;
+    background-size: cover;
 }
 
-form label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+/* Complaint Status & Contact text white */
+#status,
+#contact {
+    color: rgb(8, 8, 8);
 }
 
-form input, form select, form textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+/* Headings bhi white */
+#status h2,
+#contact h2 {
+    color: rgb(15, 15, 15);
 }
 
-form button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: green;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
+/* Paragraph text */
+#status p,
+#contact p {
+    color: rgb(15, 15, 15);
 }

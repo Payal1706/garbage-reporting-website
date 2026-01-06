@@ -1,14 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Report Garbage</title>
-    <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<meta charset="UTF-8">
+<title>Report Garbage</title>
 
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
+<style>
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    
+}
+
+/* PAGE LAYOUT */
+.report-container{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* LEFT INFO PANEL */
+.left-panel{
+    width: 35%;
+    padding: 60px 40px;
+    background: rgb(51, 201, 84);          /* 👈 LEFT PANEL WHITE */
+    color: rgb(245, 248, 246);
+}
+
+
+
+.left-panel h1{
+    font-size: 36px;
+}
+
+.left-panel p{
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* RIGHT FORM PANEL */
+.form-panel{
+    width: 65%;
+   
+    padding: 50px;
+    border-radius: 30px 0 0 30px;
+}
+
+.form-panel h2{
+    margin-bottom: 20px;
+}
+
+/* FORM */
+form{
+    max-width: 520px;
+}
+
+label{
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 15px;
+    display: block;
+}
+
+input, select, textarea{
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+textarea{
+    resize: none;
+    height: 100px;
+}
+
+/* LOCATION SUGGESTIONS */
+#suggestions{
+    border:1px solid #ccc;
+    max-height:150px;
+    overflow:auto;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+#suggestions div{
+    padding: 8px;
+    cursor: pointer;
+}
+
+#suggestions div:hover{
+    background: #f0fdf4;
+}
+
+/* BUTTON */
+button{
+    margin-top: 25px;
+    padding: 14px;
+    width: 100%;
+    background: #16a34a;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #15803d;
+}
+</style>
+
+<!-- ===== SAME OLD LOCATION API (NO CHANGE) ===== -->
 <script>
 function searchLocation() {
     let query = document.getElementById("location").value;
@@ -23,8 +129,6 @@ function searchLocation() {
 
             data.forEach(place => {
                 let div = document.createElement("div");
-                div.style.padding = "5px";
-                div.style.cursor = "pointer";
                 div.innerText = place.display_name;
 
                 div.onclick = () => {
@@ -38,48 +142,62 @@ function searchLocation() {
 }
 </script>
 
-
-
-
+</head>
 <body>
 
-<header>
-    <h1>Report Garbage</h1>
-</header>
+<div class="report-container">
 
-<section class="form-section">
-    <h2>Submit Garbage Complaint</h2>
+    <!-- LEFT SIDE INFO -->
+    <div class="left-panel">
+        <h1>Report Garbage</h1>
+        <p>
+            Help us keep the city clean by reporting garbage problems.
+            Your complaint will be forwarded to municipal authorities
+            for quick action.
+        </p>
 
-    <form>
+        <p>✔ Easy Reporting</p>
+        <p>✔ Correct Location</p>
+        <p>✔ Faster Resolution</p>
+    </div>
 
-        <label>Name:</label>
-        <input type="text" placeholder="Enter your name" required>
+    <!-- RIGHT SIDE FORM -->
+    <div class="form-panel">
 
-        <label>Mobile Number:</label>
-        <input type="text" placeholder="Enter mobile number" required>
-<label>Location:</label>
-<input type="text" id="location" placeholder="Type location..." onkeyup="searchLocation()">
-<div id="suggestions" style="border:1px solid #ccc; max-height:150px; overflow:auto;"></div>
+        <h2>Garbage Complaint Form</h2>
 
-        <label>Garbage Type:</label>
-        <select>
-            <option>Plastic</option>
-            <option>Wet Waste</option>
-            <option>Dry Waste</option>
-            <option>Other</option>
-        </select>
+        <!-- NOTE: enctype added for photo upload -->
+        <form method="POST" action="/submit" enctype="multipart/form-data">
 
-        <label>Upload Image:</label>
-        <input type="file">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Enter your name" required>
 
-        <label>Description:</label>
-        <textarea placeholder="Describe the issue"></textarea>
+            <label>Location</label>
+            <input type="text" id="location" name="location"
+                   placeholder="Type area / locality..." onkeyup="searchLocation()" required>
+            <div id="suggestions"></div>
 
-        <button type="submit">Submit Complaint</button>
-    </form>
-    <a href="report.html">Report Garbage</a>
-</section>
+            <label>Type of Garbage</label>
+            <select name="garbage_type" required>
+                <option value="">-- Select Garbage Type --</option>
+                <option>Plastic Waste</option>
+                <option>Wet Waste</option>
+                <option>Dry Waste</option>
+                <option>Construction Waste</option>
+                <option>Other</option>
+            </select>
 
+            <label>Upload Photo</label>
+            <input type="file" name="photo" accept="image/*">
+
+            <label>Description</label>
+            <textarea name="description" placeholder="Describe the issue" required></textarea>
+
+            <button type="submit">Submit Complaint</button>
+        </form>
+
+    </div>
+</div>
 
 </body>
 </html>
