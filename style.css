@@ -1,0 +1,105 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f6f8;
+}
+
+.header {
+    background: #1e293b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.navbar {
+    background: #0f172a;
+    padding: 12px;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    padding: 70px;
+    background: linear-gradient(to right, #22c55e, #16a34a);
+    color: white;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    background: white;
+    color: #16a34a;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.info {
+    padding: 40px;
+    text-align: center;
+}
+
+.light {
+    background: white;
+}
+
+.form-box {
+    width: 350px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.form-box input,
+.form-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.center {
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+/* GLOBAL BACKGROUND (Home + Report) */
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+
+    background: url("/static/g.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Complaint Status & Contact text white */
+#status,
+#contact {
+    color: rgb(8, 8, 8);
+}
+
+/* Headings bhi white */
+#status h2,
+#contact h2 {
+    color: rgb(15, 15, 15);
+}
+
+/* Paragraph text */
+#status p,
+#contact p {
+    color: rgb(15, 15, 15);
+}
